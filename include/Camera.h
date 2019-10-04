@@ -16,6 +16,7 @@ private:
   Vector3d T;
 
 public:
+  Camera();
   Camera(int camera_id);
 
   void set_rotation_mat(Matrix3f r);

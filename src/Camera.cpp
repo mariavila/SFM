@@ -7,6 +7,9 @@ Camera::Camera(int camera_id){
   this->camera_id = camera_id;
 }
 
+Camera::Camera(){
+}
+
 void Camera::set_rotation_mat(Matrix3f r){
   this->R = r;
 }
