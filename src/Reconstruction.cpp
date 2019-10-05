@@ -16,7 +16,12 @@ string Reconstruction::get_name(){
 
 void Reconstruction::reconstruct(){
   this->parser.parse();
-  cout<<parser.get_cameras()[0].get_focal_lenght()<<endl;
-  cout<<parser.get_cameras()[0].get_translation_vec()<<endl;
-  cout<<parser.get_cameras()[0].get_rotation_mat()<<endl;
+  /**
+  vector<Vector4d> views = parser.get_points()[0].get_views();
+  for(int i=0; i<views.size();++i){
+    cout<<"cam: "<<views[i](0)<<endl;
+  }
+  cout<<"hola"<<endl;
+  cout<<parser.get_camera_to_point_relation()[0][0]<<endl;
+  */
 }

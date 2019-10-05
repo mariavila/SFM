@@ -14,6 +14,14 @@ vector<Camera> Parser::get_cameras(){
   return this->cameras;
 }
 
+
+vector<Point_entry> Parser::get_points(){
+  return this->points;
+}
+vector<vector<int> > Parser::get_camera_to_point_relation(){
+  return this->camera_to_point_relation;
+}
+
 void Parser::parse(){
   ifstream file(this->filename_path.c_str());
   if(file.is_open()){
@@ -24,8 +32,10 @@ void Parser::parse(){
     iss>>aux;
     this->num_cameras = stoi(aux);
     this->cameras = vector<Camera>(this->num_cameras);
+    this->camera_to_point_relation = vector<vector<int> >(this->num_cameras);
     iss>>aux;
     this->num_points = stoi(aux);
+    this->points = vector<Point_entry>(this->num_points);
 
     for(int i = 0; i<num_cameras; ++i){
       Camera cam;
@@ -84,6 +94,45 @@ void Parser::parse(){
       cam.set_translation_vec(trans);
 
       this->cameras[i] = cam;
+    }
+    for(int i = 0; i<num_points; ++i){
+      Point_entry p;
+      getline(file, line);
+
+      //Set the color
+      Vector3d col;
+      getline(file, line);
+      iss = istringstream(line);
+      iss>>aux;
+      col(0) = stoi(aux);
+      iss>>aux;
+      col(1) = stoi(aux);
+      iss>>aux;
+      col(2) = stoi(aux);
+      p.set_color(col);
+
+      //Set the view list
+      getline(file, line);
+      iss = istringstream(line);
+      iss>>aux;
+      int num_cameras_point_visible = stoi(aux);
+      vector<Vector4d> views = vector<Vector4d>(num_cameras_point_visible);
+      for(int j=0; j<num_cameras_point_visible; j++){
+        Vector4d loc_cam_info;
+        iss>>aux;
+        loc_cam_info(0) = stoi(aux);
+        this->camera_to_point_relation[stoi(aux)].push_back(i);
+        iss>>aux;
+        loc_cam_info(1) = stoi(aux);
+        iss>>aux;
+        loc_cam_info(2) = stof(aux);
+        iss>>aux;
+        loc_cam_info(3) = stof(aux);
+        views[j] = loc_cam_info;
+      }
+      p.set_views(views);
+
+      this->points[i] = p;
     }
   }
 }
