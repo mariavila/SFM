@@ -17,7 +17,7 @@ make
 
 # Compile and execute the example:
 ```
-cd sfm
+cd SFM
 cmake .
 make
 ./test_sfm
