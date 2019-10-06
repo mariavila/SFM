@@ -13,7 +13,7 @@ cd build
 cmake ..
 make
 
-#Compile and execute the example:
+# Compile and execute the example:
 cd sfm
 cmake .
 make
