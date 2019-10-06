@@ -1,25 +1,20 @@
 # SFM
-Structure from motion library
+Structure from motion library.
+
+# Requirements
+Eigen3
+OpenCV
 
 
-Installation
-
-Dependency installation on Ubuntu:
-1. Install PCL library
-  sudo apt-get install libpcl1
-
-
-Compile
-
+# How to Compile
+cd SFM
 mkdir build
 cd build
 cmake ..
 make
 
-Execute:
-
-cd build
+#Compile and execute the example:
+cd sfm
+cmake .
+make
 ./test_sfm
-
-
-!!!!!!!!!!!!http://derekmolloy.ie/hello-world-introductions-to-cmake/

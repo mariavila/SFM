@@ -25,6 +25,7 @@ public:
   Parser();
   Parser(string filename);
   void parse();
+  int get_num_cameras();
   vector<Camera> get_cameras();
   vector<Point_entry> get_points();
   vector<vector<int> > get_camera_to_point_relation();

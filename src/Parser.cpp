@@ -22,6 +22,10 @@ vector<vector<int> > Parser::get_camera_to_point_relation(){
   return this->camera_to_point_relation;
 }
 
+int Parser::get_num_cameras(){
+  return this->num_cameras;
+}
+
 void Parser::parse(){
   ifstream file(this->filename_path.c_str());
   if(file.is_open()){
